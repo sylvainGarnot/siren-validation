@@ -17,39 +17,6 @@ class SirenController extends Controller
 {
     /**
      * @Get(
-     *     path = "/sirens",
-     *     name = "app_siren_list"
-     * )
-     * @View
-     */
-    public function listAction()
-    {
-        $sirens = $this->getDoctrine()->getRepository('App:Siren')->findAll();
-        $data = $this->get('jms_serializer')->serialize($sirens, 'json');
-        $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
-
-
-    /**
-     * @Rest\Post(
-     *    path = "/sirens",
-     *    name = "app_siren_create"
-     * )
-     * @Rest\View(StatusCode = 201)
-     * @ParamConverter("siren", converter="fos_rest.request_body")
-     */
-    public function createAction(Siren $siren)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($siren);
-        $em->flush();
-        return new Response('', Response::HTTP_CREATED);
-    }
-
-    /**
-     * @Get(
      *     path = "/sirens/{id}",
      *     name = "app_siren_show",
      *     requirements = {"id"="\d+"}
@@ -62,28 +29,5 @@ class SirenController extends Controller
         $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
-    }
-
-    /**
-     * @Rest\Delete(
-     *     path = "/sirens/{id}",
-     *     name = "app_siren_delete",
-     *     requirements = {"id"="\d+"}
-     * )
-     */
-    public function removeAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $siren = $em->getRepository('App:Siren')
-                    ->find($request->get('id'));
-        if (!$siren) {
-            return;
-        }
-        foreach ($siren->getReservations() as $reservation) {
-            $em->remove($reservation);
-        }
-        $em->remove($siren);
-        $em->flush();
-        return new Response('', Response::HTTP_ACCEPTED);
     }
 }
