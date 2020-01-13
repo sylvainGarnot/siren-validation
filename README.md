@@ -34,8 +34,3 @@ $ php bin/console doctrine:migrations:migrate
 ```sh
 $ symfony server:start
 ```
-
-Routes | Methods
---- | ---
-siren | @get, @post
-siren/{id} | @get, @delete
