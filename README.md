@@ -34,3 +34,11 @@ $ php bin/console doctrine:migrations:migrate
 ```sh
 $ symfony server:start
 ```
+
+## Doc
+
+```sh
+php bin/console app:siren:update
+
+http://localhost:8000/api/siren/{siren_number}
+```

@@ -35,6 +35,9 @@ class UpdateSiren extends Command
             $this->entityManager->persist($siren);
         }
         $this->entityManager->flush();
+
+        echo 'delete CSV file'.PHP_EOL;
+        unlink($csvFile);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
@@ -43,7 +46,7 @@ class UpdateSiren extends Command
         $dataGouv = 'http://files.data.gouv.fr/sirene/sirene_2018088_E_Q.zip';
         $request = new \GuzzleHttp\Psr7\Request('GET', $dataGouv);
         $httpClient = new \GuzzleHttp\Client();
-        $folderPath =  __DIR__ . '/../../storage/uploads/';
+        $folderPath =  __DIR__ . '/../../public/';
         $fileName = 'sirene_2018088_E_Q';
         $filePath = $folderPath . $fileName;
 
