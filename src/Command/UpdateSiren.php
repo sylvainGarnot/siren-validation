@@ -13,12 +13,12 @@ use League\Csv\Reader;
 class UpdateSiren extends Command
 {
     protected static $defaultName = 'app:siren:update';
-    private $em;
+    private $entityManager;
 
-    public function __construct(string $name = null, EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        parent::__construct($name);
-        $this->em = $em;
+        parent::__construct();
+        $this->entityManager = $entityManager;
     }
 
     private function PersistCsvData($csvFile) {
@@ -32,9 +32,9 @@ class UpdateSiren extends Command
             $siren->setNumber($line['SIREN']);
             $siren->setAddress($line['L4_NORMALISEE']);
             $siren->setCompany($line['ENSEIGNE']);
-            $this->em->persist($siren);
+            $this->entityManager->persist($siren);
         }
-        $this->em->flush();
+        $this->entityManager->flush();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {

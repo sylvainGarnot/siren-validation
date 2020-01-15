@@ -2,20 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Siren;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Delete;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\FOSRestController;
-use JMS\Serializer\SerializationContext;
-
-use FOS\RestBundle\Request\ParamFetcher;
-use Symfony\Component\Validator;
 
 class SirenController extends FOSRestController
 {
@@ -33,9 +25,7 @@ class SirenController extends FOSRestController
         $sirenNumber = $request->get('siren');
         $sirens = $this->getDoctrine()->getRepository('App:Siren')->findBy(['number'=>$sirenNumber]);
         
-        if (!$sirenNumber) {
-            $response->setContent('vous devez ajouter un numéro de siren')->setStatusCode(404);
-        } else if (count($sirens) == 0) {
+        if (!$sirenNumber || count($sirens) == 0) {
             $response->setContent('siren non valide')->setStatusCode(404);
         } else {
             $data = $this->get('jms_serializer')->serialize($sirens, 'json');
