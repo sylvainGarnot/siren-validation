@@ -37,6 +37,9 @@ $ symfony server:start
 
 ## Doc
 
+get last update of siren number from http://files.data.gouv.fr/sirene/sirene_2018088_E_Q.zip
+and update your data base
+
 ```sh
 $ php bin/console app:siren:update
 
