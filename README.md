@@ -2,7 +2,7 @@
 
 This is a Rest Api Symfony Application using FOSRestBundle
 
-We use [data.gouv.fr](http://files.data.gouv.fr/sirene) to have updated to of our siren numbers
+We use [data.gouv.fr](http://files.data.gouv.fr/sirene) to have updated data of our siren numbers
 
 ### Requirements
 
