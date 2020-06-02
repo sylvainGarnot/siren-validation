@@ -2,13 +2,13 @@
 
 This is a Rest Api Symfony Application using FOSRestBundle
 
-## Requirements
+### Requirements
 
 - PHP 7.1.3 or higher;
 - PDO-SQLite PHP extension enabled;
 - and the usual [Symfony application requirements](https://symfony.com/doc/current/reference/requirements.html);
 
-## Installation
+### Installation
 
 ```sh
 $ git clone git@github.com:sylvainGarnot/siren-validation.git
@@ -16,7 +16,7 @@ $ cd siren-validation
 $ composer install
 ```
 
-## Database create & migration
+### Database create & migration
 
 After cloning this repository, edit the .env file and replace the line below with your access to the database
 ```
@@ -29,13 +29,13 @@ $ php bin/console make:migration
 $ php bin/console doctrine:migrations:migrate
 ```
 
-## Usage
+### Usage
 
 ```sh
 $ symfony server:start
 ```
 
-## Doc
+### Doc
 
 get last update of siren number from http://files.data.gouv.fr/sirene/sirene_2018088_E_Q.zip
 and update your data base
